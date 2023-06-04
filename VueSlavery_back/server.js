@@ -7,6 +7,8 @@ const app = express();
 
 dotenv.config();
 
+console.log("Coucou")
+
 var corsOptions = {
     origin: "https://localhost:5173"
 };
