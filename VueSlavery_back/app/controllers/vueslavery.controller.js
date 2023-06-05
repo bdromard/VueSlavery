@@ -1,5 +1,5 @@
 const db = require('../models');
-const VueSlavery = db.vueSlavery;
+const Slaves = db.slaves;
 const Op = db.Sequelize.Op;
 
 // Create and save a new slave.
@@ -20,7 +20,7 @@ const slave = {
     archive_id: req.body.archive_id
 }
 
-VueSlavery.create(slave)
+Slaves.create(slave)
     .then(data => {
         res.send(data);
     })
@@ -34,15 +34,63 @@ VueSlavery.create(slave)
 
 // Retrieve all slaves from the database.
 exports.findAll = (req, res) => {
+    const name = req.query.name;
+    let condition = name ? {name: {[Op.like]: `%${name}`}} : null;
 
+    Slaves.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occured while retrieving all slaves' data"
+            });
+        });
 };
 
 // Find a single slave with an ID.
 exports.findOne = (req, res) => {
+    const id = req.params.id;
 
+    Slaves.findByPk(id)
+        .then(data => {
+            if (data) {
+                res.send(data);
+            } else {
+                res.status(404).send({
+                    message: `Cannot find slave's data with id=${id}`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `Error retrieving slave's data with id=${id}`
+            });
+        });
 };
 
 // Update a slave's data by the ID in the request.
 exports.update = (req, res) => {
+    const id = req.params.id;
 
+    Slaves.update(req.body, {
+        where: { id: id}
+    })
+        .then(num => {
+            if (num == 1){
+                res.send({
+                    message: "Slave's data was updated successfully."
+                })
+            } else {
+                res.send({
+                    message: `Cannot update slave's data with id=${id}. It was either not found or req.body is empty.`
+                })
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `Error updating slave's data with id=${id}`
+            })
+        })
 };
