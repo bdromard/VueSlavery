@@ -4,7 +4,32 @@ const Op = db.Sequelize.Op;
 
 // Create and save a new slave.
 exports.create = (req, res) => {
+    if (!req.body.name) {
+        res.status(400).send({
+            message: "Content cannot be empty!"
+        });
+        return;
+    }
 
+const slave = {
+    name: req.body.name,
+    owner: req.body.owner,
+    gender: req.body.gender,
+    profession: req.body.profession,
+    owner_id: req.body.owner_id,
+    archive_id: req.body.archive_id
+}
+
+VueSlavery.create(slave)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occured while creating the slave's data."
+        });
+    });
 };
 
 // Retrieve all slaves from the database.
