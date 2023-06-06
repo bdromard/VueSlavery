@@ -19,7 +19,8 @@ app.get("/", (request, response) => {
     newMessage: "Hello hello", slaves: `${db.slaves}`})
 });
  
-require("./app/routes/vueslavery.routes.js")(app);
+require("./app/routes/slaves.routes.js")(app);
+require("./app/routes/owners.routes.js")(app);
 const PORT = process.env.PORT || 5173;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)

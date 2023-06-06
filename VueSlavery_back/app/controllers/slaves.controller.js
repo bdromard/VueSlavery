@@ -2,6 +2,7 @@ const db = require('../models');
 const Slaves = db.slaves;
 const Op = db.Sequelize.Op;
 
+// Slaves
 // Create and save a new slave.
 exports.create = (req, res) => {
     if (!req.body.name) {
@@ -12,13 +13,14 @@ exports.create = (req, res) => {
     }
 
 const slave = {
+    id: req.body.id,
     name: req.body.name,
     owner: req.body.owner,
     gender: req.body.gender,
     profession: req.body.profession,
     owner_id: req.body.owner_id,
     archive_id: req.body.archive_id
-}
+    }
 
 Slaves.create(slave)
     .then(data => {
@@ -44,7 +46,7 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occured while retrieving all slaves' data"
+                    err.message || "Some error occured while retrieving all slaves' data."
             });
         });
 };

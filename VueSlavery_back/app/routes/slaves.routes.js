@@ -1,6 +1,6 @@
 module.exports = app => {
-    const slaves = require("../controllers/vueslavery.controller.js");
-
+    const slaves = require("../controllers/slaves.controller.js");
+    
     let router = require("express").Router();
 
     // Create a new slave's data.
@@ -13,4 +13,5 @@ module.exports = app => {
     router.put("/:id", slaves.update);
 
     app.use("/api/slaves", router)
+    
 };
