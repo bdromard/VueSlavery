@@ -1,29 +1,26 @@
-const Owners = require("./owners.js");
-
 module.exports = (sequelize, Sequelize) => {
     const Slaves = sequelize.define("Slaves", {
         id: {
             type: Sequelize.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         gender: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            defaultValue: 'Unknown gender for this slave.'
         },
         profession: {
-            type: Sequelize.BOOLEAN
+            type: Sequelize.BOOLEAN,
+            defaultValue: 'Unknown profession for this slave.'
         },
-        owner_id: {
+        archiveId: {
             type: Sequelize.INTEGER,
-            references: {
-                model: Owners,
-                key: 'id'
-            }
-        },
-        archive_id: {
-            type: Sequelize.INTEGER
+            defaultValue: 'Unknown attributed archive for this slave'
         }
     });
     return Slaves;

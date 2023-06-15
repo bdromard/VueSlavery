@@ -4,13 +4,16 @@ module.exports = (sequelize, Sequelize) => {
     const Archives = sequelize.define("Archives", {
         id: {
             type: Sequelize.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
         type: Sequelize.STRING  
         },
-        city_id: {
+        cityId: {
             type: Sequelize.INTEGER,
+            defaultValue: 'Unknown city for this archive',
             references: {
                 model: Cities,
                 key: 'id'

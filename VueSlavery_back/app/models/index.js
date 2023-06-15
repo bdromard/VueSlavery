@@ -1,6 +1,6 @@
 require('dotenv').config();
-const dbConfig = require("../config/db.config.js")
-const Sequelize = require("sequelize");
+const dbConfig = require('../config/db.config.js')
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
@@ -25,5 +25,6 @@ db.slaves = require("./slaves.js")(sequelize, Sequelize);
 db.owners = require("./owners.js")(sequelize, Sequelize);
 db.cities = require("./cities.js")(sequelize, Sequelize);
 db.archives = require("./archives.js")(sequelize, Sequelize);
+db.texts = require("./texts.js")(sequelize, Sequelize);
 
 module.exports = db;
