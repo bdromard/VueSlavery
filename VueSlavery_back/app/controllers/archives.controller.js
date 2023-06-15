@@ -15,7 +15,7 @@ exports.create = (req, res) => {
 const archive = {
     id: req.body.id,
     name: req.body.name,
-    city_id: req.body.city_id,
+    cityId: req.body.cityId,
     }
 
 Archives.create(archive)

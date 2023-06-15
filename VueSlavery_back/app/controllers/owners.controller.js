@@ -16,8 +16,7 @@ exports.create = (req, res) => {
         id: req.body.id,
         name: req.body.name,
         gender: req.body.gender,
-        slave_id: req.body.slave_id,
-        archive_id: req.body.archive_id
+        archiveId: req.body.archive_id
     }
 
 Owners.create(owner)

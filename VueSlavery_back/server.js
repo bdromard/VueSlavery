@@ -2,8 +2,8 @@ const dotenv = require('dotenv');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
+const db = require("./app/models");
 
 dotenv.config();
 
@@ -25,10 +25,6 @@ const PORT = process.env.PORT || 5173;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
 });
-
-const db = require("./app/models");
-
-
 
 db.sequelize.sync();
 

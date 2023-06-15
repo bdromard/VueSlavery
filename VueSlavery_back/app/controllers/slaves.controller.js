@@ -18,8 +18,7 @@ const slave = {
     owner: req.body.owner,
     gender: req.body.gender,
     profession: req.body.profession,
-    owner_id: req.body.owner_id,
-    archive_id: req.body.archive_id
+    archiveId: req.body.archiveId
     }
 
 Slaves.create(slave)
