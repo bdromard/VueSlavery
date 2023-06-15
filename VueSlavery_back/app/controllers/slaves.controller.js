@@ -1,7 +1,7 @@
-const { db } = await require('../models/index.js');
-console.log(db)
+const db = require('../models/index.js');
 const Slaves = db.slaves;
 const Op = db.Sequelize.Op;
+
 
 // Slaves
 // Create and save a new slave.

@@ -48,24 +48,25 @@ async function databaseInit(){
     db.archives = require("./archives.js")(sequelize, Sequelize);
     db.texts = require("./texts.js")(sequelize, Sequelize);
 
-    await db.slaves.sync();
-    await db.owners.sync();
-    await db.cities.sync();
-    await db.archives.sync();
-    await db.texts.sync();
+    db.slaves.sync();
+    db.owners.sync();
+    db.cities.sync();
+    db.archives.sync();
+    db.texts.sync();
 
     
     return db
     
 };
 
-module.exports = databaseInit()
+module.exports = 
+    databaseInit()
                 .then((db) => {
+        console.log(db)
         console.log('Promise resolved')
         return db;
-    },
-    (error) => {
-        console.log(error);
-    }
-);
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 
