@@ -1,3 +1,5 @@
+const Archives = require('./archives.js')
+
 module.exports = (sequelize, Sequelize) => {
     const Slaves = sequelize.define("Slaves", {
         id: {
@@ -15,12 +17,15 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: 'Unknown gender for this slave.'
         },
         profession: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
             defaultValue: 'Unknown profession for this slave.'
         },
         archiveId: {
             type: Sequelize.INTEGER,
-            defaultValue: 'Unknown attributed archive for this slave'
+            references: {
+                model: 'Archives',
+                key: "id"
+            }
         }
     });
     return Slaves;

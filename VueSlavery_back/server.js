@@ -1,11 +1,9 @@
-const dotenv = require('dotenv');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const db = require("./app/models");
 
-dotenv.config();
 
 var corsOptions = {
     origin: "https://localhost:5173"

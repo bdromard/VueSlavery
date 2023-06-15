@@ -1,20 +1,17 @@
-const dotenv = require('dotenv');
 const dbConfig = require('../config/db.config.js');
 const mariaDb = require('mariadb');
 const Sequelize = require('sequelize');
-dotenv.config({ path: '/home/virgilisdead/ada/projets_perso/VueSlavery/VueSlavery_back/.env'});
+
 
 async function databaseInit(){
     
     console.log('coucou dbinit')
     // Creating database if it does not exist
+    console.log(dbConfig.HOST)
     try {
-        const { HOST, USER, PASSWORD, DB } = dbConfig;
-        console.log(dbConfig.HOST)
-        console.log(DB)
-        const connection = await mariaDb.createConnection({ HOST, port:3306, USER, PASSWORD})
+        const connection = await mariaDb.createConnection({ host: dbConfig.HOST, user: dbConfig.USER, password: dbConfig.PASSWORD})
         console.log('coucou connectmariadb')
-        await connection.query(`CREATE DATABASE IF NOT EXISTS \`${DB}\`;`)}
+        await connection.query(`CREATE DATABASE IF NOT EXISTS \`${dbConfig.DB}\`;`)}
     catch(err) {
         console.log(err)
     }
@@ -33,9 +30,16 @@ async function databaseInit(){
             acquire: dbConfig.pool.acquire,
             idle: dbConfig.pool.idle
         }
-    }
-);
+    });
+
+    sequelize.authenticate().then(() => {
+        console.log('Succesful connection to the DB')
+    }).catch((err) => {
+        console.error('Unable to connect', err)});
+
+    console.log('coucou après sequelize connect')
     const db = {};
+
     db.Sequelize = Sequelize;
     db.sequelize = sequelize;
     db.slaves = require("./slaves.js")(sequelize, Sequelize);
@@ -43,9 +47,25 @@ async function databaseInit(){
     db.cities = require("./cities.js")(sequelize, Sequelize);
     db.archives = require("./archives.js")(sequelize, Sequelize);
     db.texts = require("./texts.js")(sequelize, Sequelize);
-    module.exports = db;
+
+    await db.slaves.sync();
+    await db.owners.sync();
+    await db.cities.sync();
+    await db.archives.sync();
+    await db.texts.sync();
+
     
-}
+    return db
+    
+};
 
+module.exports = databaseInit()
+                .then((db) => {
+        console.log('Promise resolved')
+        return db;
+    },
+    (error) => {
+        console.log(error);
+    }
+);
 
-databaseInit();

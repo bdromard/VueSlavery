@@ -16,7 +16,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         archiveId: {
             type: Sequelize.INTEGER,
-            defaultValue: 'Unknown attributed archive for this owner'
+            references: {
+                model: 'Archives',
+                key: 'id'
+            }
         }
     });
     return Owners;

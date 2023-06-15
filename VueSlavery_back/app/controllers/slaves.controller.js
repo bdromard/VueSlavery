@@ -1,4 +1,5 @@
-const db = require('../models');
+const { db } = await require('../models/index.js');
+console.log(db)
 const Slaves = db.slaves;
 const Op = db.Sequelize.Op;
 

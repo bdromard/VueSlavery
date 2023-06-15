@@ -1,5 +1,3 @@
-const Cities = require('./cities.js')
-
 module.exports = (sequelize, Sequelize) => {
     const Archives = sequelize.define("Archives", {
         id: {
@@ -9,14 +7,14 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         name: {
-        type: Sequelize.STRING  
+            type: Sequelize.STRING,
+            allowNull: false  
         },
         cityId: {
             type: Sequelize.INTEGER,
-            defaultValue: 'Unknown city for this archive',
             references: {
-                model: Cities,
-                key: 'id'
+                model: 'Cities',
+                key: "id"
             }
         }
     });
