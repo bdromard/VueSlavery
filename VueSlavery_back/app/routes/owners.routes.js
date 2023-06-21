@@ -1,5 +1,6 @@
 module.exports = app => {
     const owners = require("../controllers/owners.controller.js");
+    
     let router = require("express").Router();
 
     // Create a new owner's data.
@@ -12,4 +13,4 @@ module.exports = app => {
     router.put("/:id", owners.update);
 
     app.use("/api/owners", router)
-}
+};
