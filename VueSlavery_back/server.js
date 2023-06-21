@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.get("/", (request, response) => {
     response.json({ message: "Welcome to VueSlavery, a project based on Benjamin Dromard's PhD research.", 
-    newMessage: "Hello hello", slaves: `${db.slaves}`})
+})
 });
  
 require("./app/routes/slaves.routes.js")(app);

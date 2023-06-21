@@ -1,7 +1,6 @@
 const db = require('../models/index.js');
 const Slaves = db.slaves;
-const Op = db.Sequelize.Op;
-
+const Op = db.Sequelize.Op
 
 // Slaves
 // Create and save a new slave.
