@@ -4,6 +4,8 @@ module.exports = app => {
 
     // Get all references to owners in sources
     router.get('/', ownerstexts.findAll)
+    // Get all reference for owner by ID
+    router.get('/:id', ownerstexts.findOneByOwner)
 
     app.use('/api/ownerstexts', router)
 }
