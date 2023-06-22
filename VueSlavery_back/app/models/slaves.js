@@ -1,5 +1,3 @@
-const Archives = require('./archives.js')
-
 module.exports = (sequelize, Sequelize) => {
     const Slaves = sequelize.define("Slaves", {
         id: {
@@ -28,5 +26,8 @@ module.exports = (sequelize, Sequelize) => {
             }
         }
     });
+    Slaves.associate = function(models) {
+    Slaves.belongsToMany(models.Texts, {through: 'SlavesTexts', foreignKey: 'slaveId', as: 'texts' })
+  };
     return Slaves;
 };

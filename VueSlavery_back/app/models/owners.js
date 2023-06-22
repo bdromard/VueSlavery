@@ -22,5 +22,8 @@ module.exports = (sequelize, Sequelize) => {
             }
         }
     });
-    return Owners;
+    Owners.associate = function(models) {
+    Owners.belongsToMany(models.Texts, {through: 'SlavesTexts', foreignKey: 'ownerId', as: 'texts' })
+  };
+   return Owners;
 };
