@@ -1,6 +1,5 @@
 const db = require('../models');
 const OwnersTexts = db.ownerstexts;
-const Op = db.Sequelize.Op;
 
 // Retrieve all relations between owners and textual sources.
 exports.findAll = (req, res) => {
@@ -23,7 +22,7 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-             err.message || 'Error while retrieving all textual references of owners'
+             err.message || 'Error while retrieving all textual references to owners'
       })
     });
 };
@@ -37,13 +36,13 @@ exports.findOneByOwner = (req, res) => {
           res.send(data);
         } else {
           res.status(404).send({
-          message: `Cannot find data with with id=${ownerId}`
+          message: `Cannot find textual references with with id=${ownerId}`
            });
           }   
         })
     .catch(err => {
         res.status(500).send({
-        message: `Error while retrieving data with id=${ownerId}`
+        message: `Error while retrieving textual references with id=${ownerId}`
         });
     });
 };
