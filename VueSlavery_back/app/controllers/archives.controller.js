@@ -32,10 +32,8 @@ Archives.create(archive)
 
 // Retrieve all archives from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    let condition = name ? {name: {[Op.like]: `%${name}`}} : null;
 
-    Archives.findAll({ where: condition })
+    Archives.findAll()
         .then(data => {
             res.send(data);
         })

@@ -31,10 +31,8 @@ Cities.create(city)
 
 // Retrieve all cities from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    let condition = name ? {name: {[Op.like]: `%${name}`}} : null;
 
-    Cities.findAll({ where: condition })
+    Cities.findAll()
         .then(data => {
             res.send(data);
         })

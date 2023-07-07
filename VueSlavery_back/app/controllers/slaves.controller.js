@@ -35,10 +35,8 @@ Slaves.create(slave)
 
 // Retrieve all slaves from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    let condition = name ? {name: {[Op.like]: `%${name}`}} : null;
 
-    Slaves.findAll({ where: condition })
+    Slaves.findAll()
         .then(data => {
             res.send(data);
         })

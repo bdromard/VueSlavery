@@ -35,10 +35,8 @@ Texts.create(text)
 };
 
 exports.findAll = (req, res) => {
-    const reference = req.query.reference;
-    let condition = reference ? {reference: {[Op.like]: `%${reference}`}} : null;
 
-    Texts.findAll({ where: condition })
+    Texts.findAll()
         .then(data => {
             res.send(data);
         })

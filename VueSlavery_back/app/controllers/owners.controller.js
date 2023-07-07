@@ -33,10 +33,8 @@ Owners.create(owner)
 
     // Retrieve all owners from the database.
     exports.findAll = (req, res) => {
-        const name = req.query.name;
-        let condition = name ? {name: {[Op.like]: `%${name}`}} : null;
     
-        Owners.findAll({ where: condition})
+        Owners.findAll()
             .then(data => {
                 res.send(data);
             })
