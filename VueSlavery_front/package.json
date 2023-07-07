@@ -1,5 +1,5 @@
 {
-  "name": "vueslavery",
+  "name": "vueslavery-front",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -8,13 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.4.0",
-    "vue": "^3.3.2",
-    "vue-router": "^4.2.2"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
     "tailwindcss": "^3.3.2",
-    "vite": "^4.3.5"
+    "vite": "^4.3.9"
   }
 }
