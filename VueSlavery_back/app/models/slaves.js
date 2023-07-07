@@ -26,11 +26,6 @@ module.exports = (sequelize, Sequelize) => {
             }
         }
     });
-    Slaves.associate = db => {
-    Slaves.belongsToMany(db.texts, {
-      through: 'SlavesTexts'
-    })
-  }
 
     return Slaves;
 };

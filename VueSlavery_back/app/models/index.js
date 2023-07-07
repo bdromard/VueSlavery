@@ -23,18 +23,14 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-const Slave = require("./slaves.js")(sequelize, Sequelize);
-const Owner = require("./owners.js")(sequelize, Sequelize);
-const Text = require("./texts.js")(sequelize, Sequelize);
-
-db.slaves = Slave;
-db.owners = Owner;
-db.texts = Text;
+db.slaves = require("./slaves.js")(sequelize, Sequelize);
+db.owners = require("./owners.js")(sequelize, Sequelize);
+db.texts = require("./texts.js")(sequelize, Sequelize);
 db.cities = require("./cities.js")(sequelize, Sequelize);
 db.archives = require("./archives.js")(sequelize, Sequelize);
 
 
-Slave.belongsToMany(Text, { through: 'SlavesTexts'});
-Owner.belongsToMany(Text, { through: 'OwnersTexts'});
+db.slaves.belongsToMany(db.texts, { through: 'SlavesTexts'});
+db.owners.belongsToMany(db.texts, { through: 'OwnersTexts'});
 
 module.exports = db;

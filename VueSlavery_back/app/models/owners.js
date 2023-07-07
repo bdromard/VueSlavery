@@ -23,10 +23,6 @@ module.exports = (sequelize, Sequelize) => {
         }
     });
    
-   Owners.associate = db => {
-    Owners.belongsToMany(db.texts, {
-      through: 'OwnersTexts'
-    })
-  }
+
    return Owners;
 };
