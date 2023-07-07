@@ -4,9 +4,9 @@ module.exports = app => {
     let router = require("express").Router();
 
     // Create a new slave's data.
-    router.post("/", slaves.create);
+    router.post("/create", slaves.create);
     // Retrieve all slaves' data.
-    router.get("/", slaves.findAll);
+    router.get("/findAll", slaves.findAll);
     // Retrieve one slave's data with ID.
     router.get("/:id", slaves.findOne);
     // Update one slave's data with ID.

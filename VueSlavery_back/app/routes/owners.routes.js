@@ -4,9 +4,9 @@ module.exports = app => {
     let router = require("express").Router();
 
     // Create a new owner's data.
-    router.post("/", owners.create);
+    router.post("/create", owners.create);
     // Retrieve all owners' data.
-    router.get("/", owners.findAll);
+    router.get("/findAll", owners.findAll);
     // Retrieve one owner's data with ID.
     router.get("/:id", owners.findOne);
     // Update one owner's data with ID.
