@@ -7,7 +7,7 @@ on:
       - dev
 defaults:
   run:
-    working-directory: VueSlavery_back/
+    working-directory: VueSlavery_back
 jobs:
   linux_job:
     runs-on: ubuntu-latest
