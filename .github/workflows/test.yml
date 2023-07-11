@@ -10,7 +10,7 @@ defaults:
     working-directory: VueSlavery_back/
 jobs:
   linux_job:
-    runs-on: ubuntu-latests
+    runs-on: ubuntu-latest
      
     strategy:
       matrix:
