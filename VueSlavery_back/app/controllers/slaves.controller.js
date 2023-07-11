@@ -54,21 +54,13 @@ exports.findOne = (req, res) => {
 
     Slaves.findByPk(id)
         .then(data => {
-            if (data) {
                 res.send(data);
-            } else {
-                res.status(404).send({
-                    message: `Cannot find slave's data with id=${id}`
-                });
-            }
-        })
+             }
+        )
         .catch(err => {
-            res.status(500).send({
-                message: `Error retrieving slave's data with id=${id}`
-            });
-        });
-};
-
+            res.status(404).json(err);
+});
+}
 // Update a slave's data by the ID in the request.
 exports.update = (req, res) => {
     const id = req.params.id;
