@@ -1,8 +1,10 @@
+const dotenv = require('dotenv')
+dotenv.config()
 module.exports = {
     HOST: process.env.DB_HOST,
-    USER: process.env.DB_LOGIN,
+    USER: process.env.DB_USER,
     PASSWORD : process.env.DB_PASSWORD,
-    DB: "VueSlavery",
+    DB: process.env.DB_DBNAME,
     dialect: "mariadb",
     pool: {
         max: 5,
@@ -11,3 +13,4 @@ module.exports = {
         idle: 10000
     }
 };
+

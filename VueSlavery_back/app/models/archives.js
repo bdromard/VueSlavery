@@ -1,18 +1,20 @@
-const Cities = require('./cities.js')
-
 module.exports = (sequelize, Sequelize) => {
     const Archives = sequelize.define("Archives", {
         id: {
             type: Sequelize.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
         },
         name: {
-        type: Sequelize.STRING  
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique: true
         },
-        city_id: {
+        cityId: {
             type: Sequelize.INTEGER,
             references: {
-                model: Cities,
+                model: 'Cities',
                 key: 'id'
             }
         }
