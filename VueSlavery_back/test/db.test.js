@@ -24,6 +24,7 @@ describe('slavesController', () => {
     };
 
     const statusJsonSpy = sinon.spy();
+
   
     const res = {
       send: sinon.spy(),
@@ -32,7 +33,7 @@ describe('slavesController', () => {
 
     it('should return data if found', async () => {
 
-      sequelize.findByPk = sandbox
+      sequelize.Model.findByPk = sandbox
         .stub()
         .returns(Promise.resolve('banana'));
 
@@ -40,16 +41,16 @@ describe('slavesController', () => {
 
       expect(res.send).to.have.been.calledWith('banana')
     })
-    it('should call res.status with 500 and send message on error', async () => {
-      sequelize.findByPk = sandbox
+    it('should call res.status with 404 and send message on error', async () => {
+      sequelize.Model.findByPk = sandbox
         .stub()
-        .returns(Promise.reject('error message'))
+        .returns(Promise.reject('error'));
 
       await slavesController.findOne(req, res);
       await console.error('---')
 
-      expect(res.status).to.have.been.calledWith(500);
-      expect(statusJsonSpy).to.have.been.calledWith('error message')
+      expect(res.status).to.have.been.calledWith(404);
+      expect(statusJsonSpy).to.have.been.calledWith('error');
     })
   })
 })
