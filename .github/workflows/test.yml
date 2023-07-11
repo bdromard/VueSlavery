@@ -1,0 +1,30 @@
+name: test CI with Node
+run-name: ${{ github.actor }} is testing VueSlavery
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+  defaults:
+    run:
+      working-directory: VueSlavery_back/
+  jobs:
+    linux_job:
+      runs-on: ubuntu-latests
+       
+      strategy:
+        matrix:
+          node-version: [14.x, 16.x, 18.x, 20.x]
+      steps:
+        - name: Checkout working repository
+          uses: actions/checkout@v3
+          with:
+            ref: 'dev'
+        - name: Setting up NodeJS
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: Install dependencies with package-lock
+          run: npm ci
+        - run: npm run build --if-present
+        - run: npm test
