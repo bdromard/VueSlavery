@@ -1,9 +1,9 @@
-const chai = require('chai')
-const sequelize = require('sequelize')
-const sinon = require('sinon')
-const sinonChai = require('sinon-chai')
+const chai = require('chai');
+const sequelize = require('sequelize');
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
 
-const slavesController = require("../app/controllers/slaves.controller.js")
+const slavesController = require("../../../app/controllers/slaves.controller.js");
 
 const expect = chai.expect;
 
