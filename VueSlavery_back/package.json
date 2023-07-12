@@ -4,7 +4,7 @@
   "description": "Node.js REST APIs with Express, Sequelize & MySQL",
   "main": "serve.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "keywords": [
     "nodejs",
