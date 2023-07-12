@@ -26,10 +26,7 @@ Slaves.create(slave)
         res.send(data);
     })
     .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occured while creating the slave's data."
-        });
+        res.status(500).json(err)        
     });
 };
 
@@ -41,10 +38,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         })
         .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occured while retrieving all slaves' data."
-            });
+            res.status(500).json(err);
         });
 };
 
@@ -65,7 +59,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Slaves.update(req.body, {
+    Slaves.update(req.params, {
         where: { id: id}
     })
         .then(num => {
@@ -80,8 +74,6 @@ exports.update = (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).send({
-                message: `Error updating slave's data with id=${id}`
-            })
-        })
-};
+            res.status(500).json(err)
+    })
+}
