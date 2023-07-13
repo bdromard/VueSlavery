@@ -4,7 +4,7 @@
   "description": "Node.js REST APIs with Express, Sequelize & MySQL",
   "main": "serve.js",
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "nyc mocha --recursive"
   },
   "keywords": [
     "nodejs",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
     "request": "^2.88.2",
     "sinon": "^15.2.0",
     "sinon-chai": "^3.7.0"
