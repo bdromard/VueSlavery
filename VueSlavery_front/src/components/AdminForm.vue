@@ -1,4 +1,19 @@
 <script setup>
+import { ref } from 'vue';
+
+let databaseApi = 'http://localhost:5174/api/database/allTables'
+const tables = ref([])
+
+const getTables = async () => {
+  const response = await fetch(databaseApi, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'},
+  }).then((data) => {
+      let tab = data.json()
+    })
+}
+
+console.log(getTables())
 </script>
 
 <template>
