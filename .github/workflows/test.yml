@@ -11,6 +11,7 @@ defaults:
 jobs:
   linux_job:
     runs-on: ubuntu-latest
+    timeout-minutes: 15 
      
     strategy:
       matrix:
