@@ -5,16 +5,14 @@ const Op = db.Sequelize.Op;
 
 // Create async function that will find data from Cities table, to add cityId with city written as input in form
 
-const findCityId = async(cityName) => {
+const findCityId = async (cityName) => {
   try {
   const response = await Cities.findOne({
     where: {
       name: cityName
     }
   })
-  const data = response.json()
-  const id = data['id']
-  return id
+  return response['dataValues']['id']
   }
   catch(error) {
     console.log(error)
@@ -22,7 +20,7 @@ const findCityId = async(cityName) => {
 }
 // Archives
 // Create and save a new archive.
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (!req.body.name) {
         res.status(400).send({
             message: "Content cannot be empty!"
@@ -30,10 +28,12 @@ exports.create = (req, res) => {
         return;
     }
 
+const cityId = await findCityId(req.body.city);
+
 const archive = {
     id: req.body.id,
     name: req.body.name,
-    cityId: findCityId(req.body.city),
+    cityId: cityId,
     }
 
 Archives.create(archive)
