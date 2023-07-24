@@ -1,7 +1,25 @@
 const db = require('../models');
 const Archives = db.archives;
+const Cities = db.cities;
 const Op = db.Sequelize.Op;
 
+// Create async function that will find data from Cities table, to add cityId with city written as input in form
+
+const findCityId = async(cityName) => {
+  try {
+  const response = await Cities.findOne({
+    where: {
+      name: cityName
+    }
+  })
+  const data = response.json()
+  const id = data['id']
+  return id
+  }
+  catch(error) {
+    console.log(error)
+  }
+}
 // Archives
 // Create and save a new archive.
 exports.create = (req, res) => {
@@ -15,7 +33,7 @@ exports.create = (req, res) => {
 const archive = {
     id: req.body.id,
     name: req.body.name,
-    cityId: req.body.cityId,
+    cityId: findCityId(req.body.city),
     }
 
 Archives.create(archive)

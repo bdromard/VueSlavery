@@ -4,9 +4,9 @@ module.exports = app => {
   let router = require("express").Router();
 
   // Create a new archive's data.
-  router.post("/create", archives.create);
+  router.post("/", archives.create);
   // Retrieve all archives' data.
-  router.get("/findAll", archives.findAll);
+  router.get("/", archives.findAll);
   // Retrieve one archive's data with ID.
   router.get("/:id", archives.findOne);
   // Update one text's data with ID.
