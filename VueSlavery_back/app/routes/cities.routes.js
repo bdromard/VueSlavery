@@ -4,9 +4,9 @@ module.exports = app => {
   let router = require("express").Router();
 
   // Create a new city's data.
-  router.post("/create", cities.create);
+  router.post("/", cities.create);
   // Retrieve all cities' data.
-  router.get("/findAll", cities.findAll);
+  router.get("/", cities.findAll);
   // Retrieve one city's data with ID.
   router.get("/:id", cities.findOne);
   // Update one city's data with ID.
