@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  
+  vs-back:
+    env_file: ./VueSlavery_back/.env
+    image: vs_back
+    networks:
+      - vueslavery
+    depends_on:
+      - mariadb
+
+  vs-front:
+    image: vs_front
+    networks:
+      - vueslavery
+
+  db:
+    image: mariadb
+    restart: always
+    environment: 
+      MARIADB_ROOT_PASSWORD: test
+    networks:
+      - vueslavery
+
+networks:
+  vueslavery:
+    driver: bridge
