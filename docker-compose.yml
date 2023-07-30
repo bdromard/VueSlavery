@@ -3,25 +3,38 @@ version: "3.8"
 services:
   
   vs-back:
-    env_file: ./VueSlavery_back/.env
-    image: vs_back
+    build:
+      context: ./VueSlavery_back
     networks:
       - vueslavery
     depends_on:
       - mariadb
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DB_HOST: host.docker.internal
+    ports:
+      - "5174:5174"
 
   vs-front:
-    image: vs_front
+    build:
+      context: ./VueSlavery_front
     networks:
       - vueslavery
+    ports:
+      - "5173:5173"
 
-  db:
+  mariadb:
     image: mariadb
     restart: always
     environment: 
+      MARIADB_ROOT_HOST: localhost
       MARIADB_ROOT_PASSWORD: test
+      MARIADB_DATABASE: VueSlaveryDB
     networks:
       - vueslavery
+    ports:
+      - "3306:3306"
 
 networks:
   vueslavery:
