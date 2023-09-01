@@ -1,10 +1,27 @@
 const db = require('../models');
 const Archives = db.archives;
+const Cities = db.cities;
 const Op = db.Sequelize.Op;
+const helpers = require('../helpers/helpers.js');
 
+//Create async function that will find data from Cities table, to add cityId with city written as input in form
+
+const findCityId = async (cityName) => {
+  try {
+  const response = await Cities.findOne({
+    where: {
+      name: cityName
+    }
+  })
+  return response['dataValues']['id']
+  }
+  catch(error) {
+    console.log(error)
+  }
+}
 // Archives
 // Create and save a new archive.
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (!req.body.name) {
         res.status(400).send({
             message: "Content cannot be empty!"
@@ -12,10 +29,12 @@ exports.create = (req, res) => {
         return;
     }
 
+const cityId = await helpers.findById(Cities, req.body.city);
+
 const archive = {
     id: req.body.id,
     name: req.body.name,
-    cityId: req.body.cityId,
+    cityId: cityId,
     }
 
 Archives.create(archive)
@@ -70,19 +89,16 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
+    // Sequelize Model update returns an array with one element if there are affected rows. 
     Cities.update(req.body, {
         where: { id: id}
     })
-        .then(num => {
-            if (num == 1){
+        .then(arrayLength => {
+            if (arrayLength == 1){
                 res.send({
                     message: "Archive's data was updated successfully."
                 })
-            } else {
-                res.send({
-                    message: `Cannot update archive's data with id=${id}. It was either not found or req.body is empty.`
-                })
-            }
+            } 
         })
         .catch(err => {
             res.status(500).send({

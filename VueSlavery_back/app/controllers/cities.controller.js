@@ -45,18 +45,12 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single city with an ID.
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params.id;
 
     Cities.findByPk(id)
         .then(data => {
-            if (data) {
-                res.send(data);
-            } else {
-                res.status(404).send({
-                    message: `Cannot find city's data with id=${id}`
-                });
-            }
+          res.send(data); 
         })
         .catch(err => {
             res.status(500).send({
@@ -69,17 +63,14 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
+    // Method returns an array, if array length is equal to 1, it means there is a result and update was successful.
     Cities.update(req.body, {
         where: { id: id}
     })
-        .then(num => {
-            if (num == 1){
+        .then(arrayLength => {
+            if (arrayLength == 1){
                 res.send({
                     message: "City's data was updated successfully."
-                })
-            } else {
-                res.send({
-                    message: `Cannot update city's data with id=${id}. It was either not found or req.body is empty.`
                 })
             }
         })

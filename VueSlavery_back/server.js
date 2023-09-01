@@ -22,10 +22,14 @@ require("./app/routes/owners.routes.js")(app);
 require("./app/routes/cities.routes.js")(app);
 require("./app/routes/archives.routes.js")(app);
 require("./app/routes/texts.routes.js")(app);
-const PORT = process.env.PORT || 5173;
+require("./app/routes/database.routes.js")(app);
+
+const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
 });
 
 db.sequelize.sync();
+
+
 
