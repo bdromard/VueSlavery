@@ -1,4 +1,4 @@
-<h2>About the project</h2>
+<h2> 📖 About the project</h2>
 Project dedicated to my PhD research, on slavery in first millennium BCE Babylonia.
 <br><b>Made with :</b> 
 <ul>
@@ -13,7 +13,7 @@ Project dedicated to my PhD research, on slavery in first millennium BCE Babylon
   <li><img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"></li>
 </ul>
 
-<h2>Setting up the project</h2>
+<h2> 🛠️ Setting up the project</h2>
 This is a work in progress, with only mostly the backend developed so far. 
 <br>If you wish to see how it has been set up so far, you can execute the following steps:
 <ul>
