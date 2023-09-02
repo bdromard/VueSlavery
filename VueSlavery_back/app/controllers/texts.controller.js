@@ -1,11 +1,43 @@
 const db = require('../models');
 const Texts = db.texts;
+const Cities = db.cities;
+const Archives = db.archives;
 const Op = db.Sequelize.Op;
+
+
+
+const findArchiveId = async (archiveName) => {
+  try {
+  const response = await Archives.findOne({
+    where: {
+      name: archiveName
+    }
+  })
+  return response['dataValues']['id']
+  }
+  catch(error) {
+    console.log(error)
+  }
+}
+
+const findCityId = async (cityName) => {
+  try {
+  const response = await Cities.findOne({
+    where: {
+      name: cityName
+    }
+  })
+  return response['dataValues']['id']
+  }
+  catch(error) {
+    console.log(error)
+  }
+}
 
 // Texts
 // Create and save a new text
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (!req.body.name) {
         res.status(400).send({
             message: "Content cannot be empty!"
@@ -13,13 +45,16 @@ exports.create = (req, res) => {
         return;
     }
 
+const cityId = await findCityId(req.body.city);
+const archiveId = await findArchiveId(req.body.archive);
+
 const text = {
     id: req.body.id,
     reference: req.body.reference,
     textType: req.body.textType,
     summary: req.body.summary,
-    cityId: req.body.cityId,
-    archiveId: req.body.archiveId
+    cityId: cityId,
+    archiveId: archiveId
 }
 
 Texts.create(text)

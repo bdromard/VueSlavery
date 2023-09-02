@@ -1,10 +1,27 @@
 const db = require('../models');
 const Owners = db.owners;
+const Archives = db.archives;
 const Op = db.Sequelize.Op;
+
+//Create async function that will find data from Archives table, to add archiveId with archive written as input in form.
+
+const findArchiveId = async (archiveName) => {
+  try {
+  const response = await Archives.findOne({
+    where: {
+      name: archiveName
+    }
+  })
+  return response['dataValues']['id']
+  }
+  catch(error) {
+    console.log(error)
+  }
+}
 
 // Owners
 // Create and save a new owner
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (!req.body.name) {
         res.status(400).send({
             message: "Content cannot be empty!"
@@ -12,11 +29,13 @@ exports.create = (req, res) => {
         return;
     }
 
+    const archiveId = await findArchiveId(req.body.archive);
+
     const owner = {
         id: req.body.id,
         name: req.body.name,
         gender: req.body.gender,
-        archiveId: req.body.archive_id
+        archiveId: archiveId
     }
 
 Owners.create(owner)
@@ -71,17 +90,15 @@ Owners.create(owner)
     exports.update = (req, res) => {
         const id = req.params.id;
     
+  // Sequelize Model update returns an array with one element if there are affected rows. 
+
         Owners.update(req.body, {
             where: { id: id}
         })
-            .then(num => {
-                if (num == 1){
+            .then(arrayLength => {
+                if (arrayLength == 1){
                     res.send({
                         message: "Owner's data was updated successfully."
-                    })
-                } else {
-                    res.send({
-                        message: `Cannot update owner's data with id=${id}. It was either not found or req.body is empty.`
                     })
                 }
             })
