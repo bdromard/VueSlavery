@@ -19,5 +19,6 @@ This is a work in progress, with only mostly the backend developed so far.
 <ul>
   <li>You will need to have <a href='https://docs.docker.com/get-docker/'>Docker installed</a> on your computer.</li>
   <li><code>git clone</code> the project.</li>
+  <li><code>mv ./VueSlavery_back/.env.example ./VueSlavery_back/.env for setting up default environment variables.</code></li>
   <li><code>docker compose up</code> at the root of the directory.</li>
 </ul>
