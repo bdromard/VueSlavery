@@ -24,6 +24,7 @@ require("./app/routes/archives.routes.js")(app);
 require("./app/routes/texts.routes.js")(app);
 require("./app/routes/database.routes.js")(app);
 
+
 const PORT = process.env.PORT || 5174;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
