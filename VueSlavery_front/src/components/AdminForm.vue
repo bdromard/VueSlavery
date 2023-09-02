@@ -2,11 +2,10 @@
 import { ref } from 'vue';
 import { onMounted } from 'vue';
 
-let databaseApi = 'http://localhost:5174/api/database/'
 const tables = ref()
 const columns = ref()
 
-const getTables = async () => {
+/* const getTables = async () => {
 
   try { 
   const response = await fetch(`${databaseApi}allTables`, {
@@ -44,9 +43,10 @@ const getColumns = async (model) => {
     console.log(error)
   };
 };
+*/
 
 onMounted(() => {
-  getTables()
+console.log(import.meta.env.VITE_API_URL)
 })
 
 </script>
@@ -56,8 +56,9 @@ onMounted(() => {
     <div class="admin-form">
       <label for="tables">Select table</label>
       <select name="tables">
-        <option value="Tables" selected>Tables</option>
-        <option v-for="value in tables" @click.prevent="getColumns(value['Tables_in_VueSlaveryDB'])">{{ value['Tables_in_VueSlaveryDB'] }}</option>
+        <!-- <option value="Tables" selected>Tables</option>
+        <option v-for="value in tables" @click.prevent="getColumns(value['Tables_in_VueSlaveryDB'])">{{ value['Tables_in_VueSlaveryDB'] }}</option> -->
+<!--         <input class="block bg-black" v-for="value in columns">{{ value['field'] }} -->
       </select> 
     </div>
   </form>
