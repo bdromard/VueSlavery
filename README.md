@@ -14,11 +14,4 @@ Project dedicated to my PhD research, on slavery in first millennium BCE Babylon
 </ul>
 
 <h2> 🛠️ Setting up the project</h2>
-This is a work in progress, with only mostly the backend developed so far. 
-<br>If you wish to see how it has been set up so far, you can execute the following steps:
-<ul>
-  <li>You will need to have <a href='https://docs.docker.com/get-docker/'>Docker installed</a> on your computer.</li>
-  <li><code>git clone</code> the project.</li>
-  <li><code>cp ./VueSlavery_back/.env.example ./VueSlavery_back/.env </code> for setting up default environment variables.</li>
-  <li><code>docker compose up</code> at the root of the directory.</li>
-</ul>
+<b> ⚠️ Working on a Docker environment to make this process as smooth as possible ⚠️</b>
