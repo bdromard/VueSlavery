@@ -4,5 +4,6 @@ COPY . .
 RUN apk add --update npm
 RUN npm install
 RUN npm install -g nodemon
-EXPOSE 5174 
+EXPOSE 5174
+USER 950:950 
 CMD ["nodemon", "server.js"]
