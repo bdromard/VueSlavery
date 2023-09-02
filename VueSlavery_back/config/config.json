@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "myappuser",
+    "password": "myapppassword",
+    "database": "VueSlaveryDB",
+    "host": "172.23.0.1",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "myappuser",
+    "password": "myapppassword",
+    "database": "database_test",
+    "host": "172.23.0.1",
+    "dialect": "mariadb"
+  },
+  "production": {
+    "username": "myappuser",
+    "password": "myapppassword",
+    "database": "database_production",
+    "host": "172.23.0.1",
+    "dialect": "mysql"
+  }
+}
