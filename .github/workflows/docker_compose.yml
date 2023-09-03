@@ -1,0 +1,25 @@
+name: Docker Compose build check on pull request
+run-name: ${{ github.actor }} is building Docker Compose 
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  linux_job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout working repository
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+      - name: Setting up environment variables
+        run: |
+          cd VueSlavery_back/
+          cp .env.example .env
+      - name: Creating containers and running them in background
+        run: docker compose up -d
+      - name: Listing containers    
+        run:  docker ps -a
