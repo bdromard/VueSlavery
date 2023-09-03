@@ -2,9 +2,9 @@ name: test CI with Node
 run-name: ${{ github.actor }} is testing VueSlavery
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
-      - dev
+      - main
 defaults:
   run:
     working-directory: VueSlavery_back
