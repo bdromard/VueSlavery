@@ -27,7 +27,7 @@ services:
       - "5173:5173"
     volumes:
       - ./VueSlavery_front:/front
-      - /node_modules_front:front/node_modules
+      - /node_modules_front:/front/node_modules
   mariadb:
     image: mariadb
     restart: always
