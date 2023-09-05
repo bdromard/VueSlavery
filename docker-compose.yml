@@ -17,7 +17,7 @@ services:
       - "5174:5174"
     volumes:
       - ./VueSlavery_back:/back
-      - /back/node_modules
+      - node_modules_back:/back/node_modules
   vs-front:
     build:
       context: ./VueSlavery_front
@@ -27,7 +27,7 @@ services:
       - "5173:5173"
     volumes:
       - ./VueSlavery_front:/front
-      - /front/node_modules
+      - /node_modules_front:front/node_modules
   mariadb:
     image: mariadb
     restart: always
@@ -47,7 +47,10 @@ networks:
   vueslavery:
     driver: bridge
 volumes:
-  node_modules:
+  node_modules_back:
+    name: "node_modules_back"
+  node_modules_front:  
+    name: "node_modules_front"
   backend:
     driver: local
   frontend:
