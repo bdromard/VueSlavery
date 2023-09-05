@@ -23,3 +23,5 @@ jobs:
         run: docker compose up -d
       - name: Listing containers    
         run:  docker ps -a
+      - name: Listing volumes
+        run: docker volume ls
