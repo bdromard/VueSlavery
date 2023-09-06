@@ -2,7 +2,7 @@ name: Docker Compose build check on pull request
 run-name: ${{ github.actor }} is building Docker Compose 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - main
 jobs:
